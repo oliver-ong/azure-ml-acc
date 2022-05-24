@@ -120,7 +120,7 @@ class Scoring():
             # dimension
             num_detections = int(detections.pop('num_detections'))
 
-            need_detection_key = ['detection_classes', 'detection_boxes', 'detection_masks', 'detection_scores']
+            need_detection_key = ['detection_classes', 'detection_boxes', 'detection_scores']
             detections = {key: detections[key][0, :num_detections].numpy()
                            for key in need_detection_key}
 

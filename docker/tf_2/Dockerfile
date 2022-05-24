@@ -1,6 +1,13 @@
 # Base Image
 FROM tensorflow/tensorflow:2.6.0-gpu
 
+RUN rm /etc/apt/sources.list.d/cuda.list
+RUN rm /etc/apt/sources.list.d/nvidia-ml.list
+RUN apt-key del 7fa2af80 && \
+    apt-get update && apt-get install -y --no-install-recommends wget && \
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-keyring_1.0-1_all.deb && \
+    dpkg -i cuda-keyring_1.0-1_all.deb
+
 RUN apt-get update && apt-get -q -y install git-core wget
 
 # Installing the Tensorflow Object Detection API
